@@ -23,6 +23,16 @@ body {
   /* min-height: 5000px; */
 }
 
+.feather {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
 /* * Navbar */
 /* * Navbar */
 .navbar {
@@ -79,12 +89,24 @@ body {
   color: white;
   margin: 0 0.5rem;
 }
-
-#hamburger-menu {
-  display: none;
-}
 .navbar .navbar-extra a:hover {
   color: var(--primary);
+}
+.navbar .navbar-extra #shopping-cart {
+  position: relative;
+}
+#shopping-cart .quantity-badge {
+  display: inline-block;
+  background-color: red;
+  padding: 1px 5px;
+  font-size: 0.8rem;
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  border-radius: 50%;
+}
+#hamburger-menu {
+  display: none;
 }
 
 .navbar .search-form {
@@ -119,6 +141,7 @@ body {
 .navbar .shopping-card-menu {
   /* display: flex; */
   position: absolute;
+  overflow: scroll;
   top: 100%;
   right: -100%;
   height: 100vh;
@@ -133,37 +156,101 @@ body {
   opacity: 1;
 }
 
-.shopping-card-menu .collumn {
+.shopping-card-menu .kosong {
+  text-align: center;
+  margin: 20px auto;
+  font-size: 2rem;
+  color: var(--bg);
+}
+
+.shopping-card-menu .total {
+  text-align: center;
+  margin: 20px auto;
+  font-size: 1rem;
+  color: var(--bg);
+}
+
+.collumn {
   display: grid;
-  grid-template-columns: 1.5fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr;
   align-items: center;
   border-bottom: 2px dotted black;
   margin: 0 5%;
 }
 
-.shopping-card-menu .collumn .card-image {
+.collumn .card-image {
   display: flex;
   justify-content: left;
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
 }
 
-.shopping-card-menu .collumn .card-image img {
-  width: 75%;
+.collumn .card-image img {
+  height: 3rem;
   border-radius: 50%;
 }
 
-.shopping-card-menu .collumn .teks {
+.collumn .teks {
   color: var(--bg);
-  font-size: 1.5rem;
-  line-height: 2;
+  font-size: 0.8rem;
 }
-.shopping-card-menu .collumn .teks h3 {
-  font-size: 2rem;
+.collumn .teks h3 {
+  font-size: 1.2rem;
 }
 
-.shopping-card-menu .collumn a {
+.item-price #add,
+.item-price #remove {
+  display: inline-block;
+  padding: 1px 5px;
+  background-color: #010101;
+  color: white;
+  border-radius: 25%;
+  cursor: pointer;
+  margin: 0 8px;
+}
+
+.shopping-card-menu .form-container {
+  border-top: dotted black 2px;
+  margin: 0 5%;
+}
+.shopping-card-menu .form-container form#checkoutForm {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
   color: var(--bg);
-  margin: auto;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.shopping-card-menu .form-container form label {
+  padding: 0 5%;
+  text-align: left;
+  margin: 0.5rem 0;
+}
+
+.shopping-card-menu .form-container form label input {
+  position: absolute;
+  right: 20%;
+  padding: 0.1rem;
+  width: 50%;
+  background-color: #cccccc;
+  border-radius: 2px;
+}
+
+.form-container button.checkoutButton {
+  /* width: 20%; */
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  margin: 0 auto;
+  background-color: rgb(93, 136, 204);
+  border-radius: 20px;
+}
+
+.form-container button.checkoutButton.disabled {
+  background-color: #999;
+  cursor: not-allowed;
 }
 
 /* * Hero */
@@ -339,13 +426,13 @@ body {
   line-height: 1.6;
   margin-bottom: 1rem;
 }
-.product-card {
+.product-view {
   display: grid;
   padding: 0 5%;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
   gap: 1.5rem;
 }
-.product-list {
+.product-view .product-list {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -370,25 +457,21 @@ body {
   color: white;
 }
 
-.product-card img {
+.product-view img {
   width: 75%;
   margin: 2rem 0;
 }
 
 .product-list h3 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .product-list p {
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  margin: 0;
 }
 
-.product-list p span {
-  text-decoration: line-through;
-  font-weight: 300;
-  font-size: 1rem;
-}
 .product-list .product-star {
   margin: 1rem;
   color: orange;
@@ -680,12 +763,14 @@ footer .credit p a {
     width: 60vw;
   }
 
-  .shopping-card-menu .collumn .card-image img {
-    width: 100%;
-  }
-
   .modal .modal-container {
     flex-direction: column;
+  }
+
+  .shopping-card-menu .form-container form label input {
+    position: inherit;
+    display: flex;
+    width: 100%;
   }
 }
 

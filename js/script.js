@@ -5,14 +5,15 @@ const searchForm = document.querySelector('.search-form')
 const searchBox = document.getElementById('search-box')
 const shoppingCart = document.getElementById('shopping-cart')
 const shoppingCartMenu = document.querySelector('.shopping-card-menu')
-const tombolDetailProduk = document.querySelectorAll('.item-detail-btn')
+const tombolDetailProduk = document.querySelectorAll('a#item-detail-btn')
 const closeDetailProduk = document.querySelector('.modal-container .close')
-const modal = document.getElementById('item-detail-modal')
+const modal = document.querySelectorAll('#item-detail-modal')
 const modalContainer = document.querySelector('.modal-container')
 
 // ? responsifitas hamburger menu jika diklik menampilkan list daftar isi
-hamburgerMenu.onclick = () => {
+hamburgerMenu.onclick = (e) => {
     navbarNav.classList.toggle('active')
+    e.preventDefault()
 }
 
 // ? fitur jika mengklik semua tempat selain daerah hamburger menu dan listnya akan memenghilangkan class active.
@@ -48,7 +49,9 @@ document.addEventListener('click', function(e){
 
 tombolDetailProduk.forEach((btn) => {
     btn.onclick = (e) => {
-        modal.style.display = 'flex'
+        modal.forEach((el) => {
+            el.style.display = 'flex'
+        })
         e.preventDefault()
     }
 });
